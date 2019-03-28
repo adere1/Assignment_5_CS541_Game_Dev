@@ -8,6 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.widget.Button;
+
+import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +28,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+
+
+        Button submit = findViewById(R.id.submit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                WebView webview = findViewById(R.id.webview);
+                //setContentView(webview);
+                String url = "http://149.125.136.144:8080/svg";
+                String postData = "digraph G {" +
+                        "a -> b -> c;" +
+                        "a-> c;" +
+                        "b -> d;" +
+                        "c-> d;" +
+                        "}";
+                //webview.loadUrl(url);
+                webview.postUrl(url,postData.getBytes());
             }
         });
     }
