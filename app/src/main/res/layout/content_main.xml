@@ -9,6 +9,24 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
+        android:id="@+id/textView_Name"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center_vertical"
+        android:text="Node Name -"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_que1" />
+
+    <TextView
         android:id="@+id/textView_que1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,16 +48,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="Generate Graph Now"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_dot"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_dot" />
 
     <TextView
         android:id="@+id/textView_title"
@@ -118,7 +132,7 @@
             android:layout_marginEnd="265dp"
             android:layout_marginRight="265dp"
             android:buttonTint="@color/your_color"
-            android:checked="false"
+            android:checked="true"
             android:onClick="radioNoDot"
             android:text="I do not have dot language input of my graph"
             app:layout_constraintEnd_toEndOf="parent"
@@ -156,6 +170,24 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@color/colorAccent"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:scrollbars="horizontal|vertical"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_que1" />
+
+    <EditText
+        android:id="@+id/editText_myDot"
+        style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+        android:layout_width="316dp"
+        android:layout_height="206dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/colorAccent"
         android:ems="10"
         android:gravity="top"
         android:inputType="textMultiLine"
@@ -163,7 +195,113 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_addNode" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="241dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:alpha="100"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:paddingLeft="10dp"
+        android:textColor="@color/your_color"
+        android:textSize="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_nodeName" />
+
+    <TextView
+        android:id="@+id/textView_Shape"
+        android:layout_width="100dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center_vertical"
+        android:text="Node Shape -"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Name" />
+
+    <Button
+        android:id="@+id/button_addNode"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/your_color"
+        android:onClick="submitNode"
+        android:text="Add Node"
+        android:textSize="12sp"
+        android:textColor="@color/WHITE"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+
+    <EditText
+        android:id="@+id/editText_nodeName"
+        android:layout_width="241dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:alpha="100"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:paddingLeft="10dp"
+        android:textColor="@color/your_color"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_que1" />
+
+    <EditText
+        android:id="@+id/editText_nodeCount"
+        android:layout_width="216dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:alpha="100"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:inputType="number"
+        android:paddingLeft="10dp"
+        android:text="1"
+        android:textColor="@color/your_color"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_que1" />
+
+    <Button
+        android:id="@+id/button_submitCount"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/your_color"
+        android:onClick="submitCount"
+        android:text="Submit"
+        android:textColor="@color/WHITE"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toEndOf="@+id/editText_nodeCount"
         app:layout_constraintTop_toBottomOf="@+id/textView_que1" />
 
 </android.support.constraint.ConstraintLayout>

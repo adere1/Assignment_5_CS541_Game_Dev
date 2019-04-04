@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Graph Generator</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="shapes">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>Parallelogram</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
 </resources>
