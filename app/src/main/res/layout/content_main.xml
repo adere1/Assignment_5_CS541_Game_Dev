@@ -92,21 +92,20 @@
 
     <TextView
         android:id="@+id/textView_title"
-        android:layout_width="125dp"
+        android:layout_width="318dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="275dp"
-        android:layout_marginLeft="275dp"
+        android:layout_marginStart="245dp"
+        android:layout_marginLeft="245dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="245dp"
         android:layout_marginRight="245dp"
         android:gravity="center"
-        android:text="GraphViz"
+        android:text="Graph Generator"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/design_default_color_primary_dark"
         android:textSize="36sp"
         app:fontFamily="@font/aladin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

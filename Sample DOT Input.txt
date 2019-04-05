@@ -1,0 +1,22 @@
+digraph G {
+  rankdir=TB
+  "START" [style="filled", fillcolor="gray", shape="circle"];
+  "START" -> "Split Execution";
+  "Split Execution" [shape="oval"];
+  "Split Execution" -> "Create Document in Repo";
+  "Split Execution" -> "Test Site Manager";
+  "Create Document in Repo" [shape="rectangle"];
+  "Create Document in Repo" -> "Merge Execution";
+  "Test Site Manager" [shape="tab"];
+  "Test Site Manager" -> "Merge Execution";
+  "Merge Execution" [shape="oval"];
+  "Merge Execution" -> "Site Manager approved?";
+  "Site Manager approved?" [shape="diamond"];
+  "Site Manager approved?" -> "Send Email" [label="true"];
+  "Site Manager approved?" -> "Requester - Application Rejection" [label="false"];
+  "Requester - Application Rejection" [shape="tab"];
+  "Requester - Application Rejection" -> "Split Execution";
+  "Send Email" [shape="rectangle"];
+  "Send Email" -> "END";
+  "END" [style="filled", fillcolor="gray", shape="doublecircle"];
+}	      
