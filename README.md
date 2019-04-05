@@ -3,10 +3,10 @@ CS 541 - Game Development for Mobile Platforms {Spring 2019}
 
 Project 5 - Android Application  :  Graph Generator
 
-Animation and sound effects video (YouTube) - https://youtu.be/VXxA-fxs3ck
+Animation and sound effects video (YouTube) - https://youtu.be/LQvwdtW5jnE
 
 This is the android application to generate graphs.  It has client-server architecture, where this application works as client and we're hosting the lightweight Java based HTTP server on Google Cloud Platform.
-Whenever user submits the request to generate graph, the request is sent to our server running on Google Cloud Platform, which send the graph in response back to the application.
+Whenever user submits the request to generate graph, the request is sent to our server running on Google Cloud Platform, which generates and sends the graph in response back to the application.
 
 You have to options to create your graph - 
 1. Using the "dot" language representation	
@@ -21,12 +21,12 @@ Next thing is, you need provide the edges between the nodes using  'From Node' a
 All the details you have entered so far will be visible to you all the time on the screen.
 Once you provide all the details, hit 'Generate Graph' button to render the graph.
 
-Sample dot input - 
+Sample dot input is added to GitHub directory.
 
 In-progress Implementations - Download Image and PDF format of the Graph
 
 		
-NOTE - For animation,  please see video at - https://youtu.be/VXxA-fxs3ck
+NOTE - For animation,  please see video at - https://youtu.be/LQvwdtW5jnE
 
 
 
