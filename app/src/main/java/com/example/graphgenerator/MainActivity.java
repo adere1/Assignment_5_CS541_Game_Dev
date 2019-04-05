@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         webView_graph.setVisibility(View.INVISIBLE);
         submitDot.setVisibility(View.VISIBLE);
 
-        textView_que1.setVisibility(View.INVISIBLE);
+        textView_que1.setVisibility(View.VISIBLE);
         submitDot.setVisibility(View.VISIBLE);
         button_createNew.setVisibility(View.INVISIBLE);
 
