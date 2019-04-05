@@ -8,6 +8,22 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <Spinner
+        android:id="@+id/spinner_fromNode"
+        android:layout_width="241dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:alpha="100"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:paddingLeft="10dp"
+        android:textColor="@color/your_color"
+        android:textSize="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_que1" />
+
     <TextView
         android:id="@+id/textView_Name"
         android:layout_width="100dp"
@@ -188,6 +204,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@color/colorAccent"
+        android:clickable="false"
         android:ems="10"
         android:gravity="top"
         android:inputType="textMultiLine"
@@ -199,6 +216,22 @@
 
     <Spinner
         android:id="@+id/spinner1"
+        android:layout_width="241dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:alpha="100"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:paddingLeft="10dp"
+        android:textColor="@color/your_color"
+        android:textSize="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_nodeName" />
+
+    <Spinner
+        android:id="@+id/spinner_toNode"
         android:layout_width="241dp"
         android:layout_height="30dp"
         android:layout_marginTop="4dp"
@@ -231,6 +264,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_Name" />
 
+    <TextView
+        android:id="@+id/textView_fromNode"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center_vertical"
+        android:text="From Node -"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_que1" />
+
+    <TextView
+        android:id="@+id/textView_toNode"
+        android:layout_width="100dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center_vertical"
+        android:text="To Node -"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Name" />
+
     <Button
         android:id="@+id/button_addNode"
         android:layout_width="wrap_content"
@@ -245,6 +314,26 @@
         android:text="Add Node"
         android:textSize="12sp"
         android:textColor="@color/WHITE"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+
+    <Button
+        android:id="@+id/button_addEdge"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/your_color"
+        android:onClick="submitNode"
+        android:text="Add Node"
+        android:textColor="@color/WHITE"
+        android:textSize="12sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -281,7 +370,7 @@
         android:paddingLeft="10dp"
         android:text="1"
         android:textColor="@color/your_color"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_que1" />
 
@@ -298,6 +387,7 @@
         android:onClick="submitCount"
         android:text="Submit"
         android:textColor="@color/WHITE"
+        android:textSize="12sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.98"
