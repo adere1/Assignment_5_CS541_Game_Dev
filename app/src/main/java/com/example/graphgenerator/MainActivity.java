@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     TextView textView_que1, textView_Name, textView_Shape, textView_toNode, textView_fromNode;
     Spinner spinner1, spinner_fromNode, spinner_toNode;
 
-    String nodeName, nodeShape;
-    String dotGenerated;
+    String nodeName, nodeShape, fromNode, toNode;
+    String dotGenerated = "-------------------------------- Node Details -------------------------------";
+    String myCreateDot = "digraph G {";
     int nodeID = 97;
 
     List<String> nodeNameList = new ArrayList<>();
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }); */
     }
 
+
     public void radioDot(View view) {
 
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -103,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             radioChange(true);
         }
     }
+
 
     public void radioNoDot(View view) {
 
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             button_addNode.setVisibility(View.VISIBLE);
             button_addEdge.setVisibility(View.INVISIBLE);
 
-            dotGenerated = "";
+            dotGenerated = "-------------------------------- Node Details -------------------------------";
             editText_nodeName.setText("");
             editText_myDot.setText("");
 
@@ -158,8 +161,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-
     public void radioChange(Boolean dotSelected) {
+
+        currentNode = 1;
 
         textView_Name.setVisibility(View.INVISIBLE);
         textView_Shape.setVisibility(View.INVISIBLE);
@@ -193,7 +197,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-
     public void submitNode(View view) {
 
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -207,9 +210,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 textView_que1.setText("Please enter details for node " + currentNode + ", total nodes are " + nodeCount + " - ");
                 currentNode++;
+                textView_que1.setText("Please enter details for node " + currentNode + ", total nodes are " + nodeCount + " - ");
 
-                dotGenerated = dotGenerated + "\nNode ID: " + (char) nodeID + ", \tName: " + nodeName + ", \tShape: " + nodeShape;
-                nodeID++;
+                dotGenerated = dotGenerated + "\nNode Title: " + nodeName + ", \tShape: " + nodeShape;
+
+                myCreateDot = myCreateDot + "\"" + nodeName + "\"" + "[shape=\"" + nodeShape.toLowerCase() + "\"]; ";
 
                 nodeNameList.add(nodeName);
                 nodeShapeList.add(nodeShape);
@@ -220,9 +225,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             else
                 Toast.makeText(this, "Please enter node name!", Toast.LENGTH_LONG).show();
         }
-        else {
 
-            dotGenerated = dotGenerated + "\n\n";
+
+        if (currentNode > nodeCount) {
+
+            textView_que1.setText("Please enter edge details between nodes - ");
+
+            dotGenerated = dotGenerated + "\n\n----------------------------------- Edges ---------------------------------------";
 
             ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, R.layout.spinner_item, nodeNameList);
             adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -254,9 +263,33 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
+    public void  submitEdge(View view) {
+
+        dotGenerated = dotGenerated + "\n" + fromNode + " -> " + toNode;
+        editText_myDot.setText(dotGenerated);
+
+        myCreateDot = myCreateDot + "\"" + fromNode + "\" -> \"" + toNode + "\"; ";
+        System.out.println(myCreateDot);
+    }
+
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        nodeShape = parent.getItemAtPosition(position).toString();
+
+        switch (parent.getId()) {
+
+            case R.id.spinner1:
+                nodeShape = parent.getItemAtPosition(position).toString();
+                break;
+
+            case R.id.spinner_fromNode:
+                fromNode = parent.getItemAtPosition(position).toString();
+                break;
+
+            case R.id.spinner_toNode:
+                toNode = parent.getItemAtPosition(position).toString();
+                break;
+        }
     }
 
     @Override

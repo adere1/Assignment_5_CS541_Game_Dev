@@ -10,6 +10,8 @@
 
     <Spinner
         android:id="@+id/spinner_fromNode"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        android:spinnerMode="dropdown"
         android:layout_width="241dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
@@ -216,6 +218,8 @@
 
     <Spinner
         android:id="@+id/spinner1"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        android:spinnerMode="dropdown"
         android:layout_width="241dp"
         android:layout_height="30dp"
         android:layout_marginTop="4dp"
@@ -232,6 +236,8 @@
 
     <Spinner
         android:id="@+id/spinner_toNode"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        android:spinnerMode="dropdown"
         android:layout_width="241dp"
         android:layout_height="30dp"
         android:layout_marginTop="4dp"
@@ -330,8 +336,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@color/your_color"
-        android:onClick="submitNode"
-        android:text="Add Node"
+        android:onClick="submitEdge"
+        android:text="Add Edge"
         android:textColor="@color/WHITE"
         android:textSize="12sp"
         android:visibility="invisible"

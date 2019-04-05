@@ -7,4 +7,6 @@
     android:textSize="12sp"
     android:gravity="left"
     android:textColor="@color/your_color"
+    android:spinnerMode="dropdown"
+    android:theme="@style/ThemeOverlay.AppCompat.Light"
     />
