@@ -332,6 +332,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             textView_que1.setVisibility(View.VISIBLE);
             editText_nodeCount.setVisibility(View.VISIBLE);
             button_submitCount.setVisibility(View.VISIBLE);
+            myCreateDot = "digraph G {";
         }
     }
 
