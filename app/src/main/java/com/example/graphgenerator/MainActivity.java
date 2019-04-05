@@ -1,11 +1,14 @@
 package com.example.graphgenerator;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,14 +29,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     List<String> list = new ArrayList<String>(Arrays.asList("Circle", "Box", "Diamond", "Ellipse", "Oval", "Doublecircle", "Square", "Parallelogram", "Trapezium", "Egg"));
 
     EditText editText_nodeCount, editText_nodeName, editText_dot, editText_myDot;
-    Button button_submitCount, button_addNode, button_addEdge;
+    Button button_submitCount, button_addNode, button_addEdge, submitDot, button_createNew;
     TextView textView_que1, textView_Name, textView_Shape, textView_toNode, textView_fromNode;
     Spinner spinner1, spinner_fromNode, spinner_toNode;
+    WebView webView_graph;
+    CardView cardView;
 
     String nodeName, nodeShape, fromNode, toNode;
     String dotGenerated = "-------------------------------- Node Details -------------------------------";
     String myCreateDot = "digraph G {";
-    int nodeID = 97;
+    String finalDot;
+    boolean inputDot = false;
 
     List<String> nodeNameList = new ArrayList<>();
     List<String> nodeShapeList = new ArrayList<>();
@@ -69,29 +75,61 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         button_addNode = findViewById(R.id.button_addNode);
         button_addEdge = findViewById(R.id.button_addEdge);
         button_submitCount = findViewById(R.id.button_submitCount);
+        submitDot = findViewById(R.id.submit);
+        button_createNew = findViewById(R.id.button_createNew);
+        button_createNew.setVisibility(View.INVISIBLE);
+
+        webView_graph = findViewById(R.id.webView_graph);
+        webView_graph.setVisibility(View.INVISIBLE);
+
+        cardView = findViewById(R.id.cardView);
 
         radioChange(false);
 
-        final Button submit = findViewById(R.id.submit);
-       /* submit.setOnClickListener(new View.OnClickListener() {
+        submitDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WebView webview = findViewById(R.id.webview);
-                webview.setVisibility(View.VISIBLE);
-                submit.setVisibility(View.INVISIBLE);
-                //setContentView(webview);
-                String url = "http://192.168.1.179:8080";
-                String postData = "digraph G {" +
-                        "a -> b -> c;" +
-                        "a-> c;" +
-                        "b -> d;" +
-                        "c-> d;" +
-                        "}";
+                webView_graph.setVisibility(View.VISIBLE);
+                webView_graph.setInitialScale(1);
+                webView_graph.getSettings().setLoadWithOverviewMode(true);
+                webView_graph.getSettings().setUseWideViewPort(true);
 
-                webview.setBackgroundColor(Color.WHITE);
-                webview.postUrl(url,postData.getBytes());
+                submitDot.setVisibility(View.INVISIBLE);
+
+                if(inputDot)
+                    finalDot = editText_dot.getText().toString();
+                else
+                    finalDot = myCreateDot + "}";
+
+                System.out.println(finalDot);
+                String url = "http://34.73.253.18:8080/";
+                webView_graph.setBackgroundColor(Color.WHITE);
+                webView_graph.postUrl(url, finalDot.getBytes());
+
+                spinner1.setVisibility(View.INVISIBLE);
+                spinner_fromNode.setVisibility(View.INVISIBLE);
+                spinner_toNode.setVisibility(View.INVISIBLE);
+
+                textView_que1.setVisibility(View.INVISIBLE);
+                textView_Name.setVisibility(View.INVISIBLE);
+                textView_Shape.setVisibility(View.INVISIBLE);
+                textView_fromNode.setVisibility(View.INVISIBLE);
+                textView_toNode.setVisibility(View.INVISIBLE);
+
+                editText_nodeCount.setVisibility(View.INVISIBLE);
+                editText_nodeName.setVisibility(View.INVISIBLE);
+                editText_myDot.setVisibility(View.INVISIBLE);
+                editText_dot.setVisibility(View.INVISIBLE);
+
+                button_addNode.setVisibility(View.INVISIBLE);
+                button_addEdge.setVisibility(View.INVISIBLE);
+                button_submitCount.setVisibility(View.INVISIBLE);
+                submitDot.setVisibility(View.INVISIBLE);
+                button_createNew.setVisibility(View.VISIBLE);
+
+                cardView.setVisibility(View.INVISIBLE);
             }
-        }); */
+        });
     }
 
 
@@ -100,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-        if( dot == false) {
+        if(dot == false) {
             dot = true;
             radioChange(true);
         }
@@ -112,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-        if( dot == true) {
+        if(dot == true) {
             dot = false;
             radioChange(false);
         }
@@ -126,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         nodeCount = Integer.parseInt(editText_nodeCount.getText().toString());
 
-        if (nodeCount > 0 && nodeCount < 27) {
+        if (nodeCount > 0) {
             textView_que1.setText("Please enter details for node " + currentNode + ", total nodes are " + nodeCount + " - ");
 
             textView_Name.setVisibility(View.VISIBLE);
@@ -150,14 +188,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             editText_nodeName.setText("");
             editText_myDot.setText("");
 
-            nodeID = 97;
             currentNode = 1;
 
             nodeNameList.clear();
             nodeShapeList.clear();
         }
         else
-            Toast.makeText(this, "Total nodes should be between 1 and 27!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Total nodes should be greater than 0!", Toast.LENGTH_LONG).show();
     }
 
 
@@ -182,12 +219,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         if (dotSelected) {
 
+            inputDot = true;
+
             textView_que1.setText("Enter dot language input of your graph -");
             editText_dot.setVisibility(View.VISIBLE);
             editText_nodeCount.setVisibility(View.INVISIBLE);
             button_submitCount.setVisibility(View.INVISIBLE);
         }
         else {
+
+            inputDot = false;
 
             textView_que1.setText("How many nodes your graph have?");
             editText_dot.setVisibility(View.INVISIBLE);
@@ -269,7 +310,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         editText_myDot.setText(dotGenerated);
 
         myCreateDot = myCreateDot + "\"" + fromNode + "\" -> \"" + toNode + "\"; ";
-        System.out.println(myCreateDot);
+    }
+
+
+    public void createNew(View view) {
+
+        webView_graph.setVisibility(View.INVISIBLE);
+        submitDot.setVisibility(View.VISIBLE);
+
+        textView_que1.setVisibility(View.INVISIBLE);
+        submitDot.setVisibility(View.VISIBLE);
+        button_createNew.setVisibility(View.INVISIBLE);
+
+        cardView.setVisibility(View.VISIBLE);
+
+        if(inputDot) {
+            editText_dot.setVisibility(View.VISIBLE);
+            editText_dot.setText("");
+        }
+        else {
+            textView_que1.setVisibility(View.VISIBLE);
+            editText_nodeCount.setVisibility(View.VISIBLE);
+            button_submitCount.setVisibility(View.VISIBLE);
+        }
     }
 
 

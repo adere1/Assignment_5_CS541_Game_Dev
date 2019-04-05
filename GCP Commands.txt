@@ -1,0 +1,16 @@
+gcloud compute --project "graphviz-server" ssh --zone "us-east1-b" "myinst"
+
+gcloud compute ssh --project "graphviz-server" --zone "us-east1-b" "myinst"
+
+gcloud auth login
+
+
+sudo apt-get install graphviz
+
+dot -v
+
+ssh -i .ssh/google_compute_engine shriram_a_suryawanshi@myinst
+
+sftp -i ~/.ssh/google_compute_engine shriram_a_suryawanshi@myinst
+
+key - shree
